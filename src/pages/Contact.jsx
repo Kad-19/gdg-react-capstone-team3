@@ -10,7 +10,7 @@ const Contact = () => {
   function handleSubmit(e) {
     e.preventDefault();
   }
-  
+
 
   return (
     <section className="w-full contact flex flex-col">
@@ -36,7 +36,7 @@ const Contact = () => {
       <div className="w-full my-10 px-10 flex flex-col justify-between sm:flex-row ">
         <form
           onSubmit={handleSubmit}
-          className="w-full flex flex-col h-100 sm:h-120 shadow-lg"
+          className="w-full flex flex-col h-100 sm:h-120  shadow-[0_0_10px_rgba(0,0,0,0.1)]"
         >
           <div className="w-full flex flex-col items-center sm:h-100 sm:mt-10">
             <input
@@ -63,7 +63,7 @@ const Contact = () => {
             <div className="w-full flex justify-center">
               <button
                 type="submit"
-                className="w-[80%] h-10 rounded-full bg-black text-white mb-10 "
+                className="w-[80%]  cursor-pointer h-10 rounded-full bg-black text-white mb-10 "
               >
                 send message
               </button>
