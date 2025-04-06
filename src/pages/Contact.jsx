@@ -10,7 +10,7 @@ const Contact = () => {
     <section className="w-full contact flex flex-col">
       <div className="relative flex">
         <img
-          className="relative z-0 w-full top-0 left-0 h-50 object-cover sm:h-170 sm:top-0 md:h-170"
+          className="relative z-0 w-full top-0 left-0 h-100 object-cover sm:h-120 md:h-170 md:top-0 sm:top-0"
           src={heroImage}
           alt=" hero image"
         />
