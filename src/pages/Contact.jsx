@@ -3,13 +3,14 @@ import heroImage from "../assets/unsplash_JFFvPHkGTyQ.svg";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
+import { MdArrowForwardIos } from "react-icons/md";
 
 const Contact = () => {
   return (
     <section className="w-full contact flex flex-col">
       <div className="relative flex">
         <img
-          className="relative z-0 w-full top-0 left-0 h-60 object-cover sm:h-170 sm:top-0 md:h-170"
+          className="relative z-0 w-full top-0 left-0 h-50 object-cover sm:h-170 sm:top-0 md:h-170"
           src={heroImage}
           alt=" hero image"
         />
@@ -18,8 +19,9 @@ const Contact = () => {
             <h1 className="text-center text-[clamp(1rem,5vw,3rem)]  ">
               Contact
             </h1>
-            <span className="inline-flex text-[clamp(0.5rem,2vw,2.5rem)] space-x-2 pl-3  ">
+            <span className="inline-flex items-center text-[clamp(0.5rem,2vw,2.5rem)] space-x-2 pl-3  ">
               <p className="text-center">Home</p>
+              <MdArrowForwardIos className="text-[clamp(0.2rem,1vw,1rem)]"/>
               <p className="text-center">Contact</p>
             </span>
           </div>
