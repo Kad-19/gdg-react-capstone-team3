@@ -37,7 +37,11 @@ const App = () => {
     //     <Footer />
     //   </div>
     // </Router>
-    <Contact/>
+    <>
+   
+      <Contact/>
+    </>
+  
   );
 };
 

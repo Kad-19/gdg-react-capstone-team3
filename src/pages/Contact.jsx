@@ -6,6 +6,12 @@ import { IoLocation } from "react-icons/io5";
 import { MdArrowForwardIos } from "react-icons/md";
 
 const Contact = () => {
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+  
+
   return (
     <section className="w-full contact flex flex-col">
       <div className="relative flex">
@@ -21,14 +27,17 @@ const Contact = () => {
             </h1>
             <span className="inline-flex items-center text-[clamp(0.5rem,2vw,2.5rem)] space-x-2 pl-3  ">
               <p className="text-center">Home</p>
-              <MdArrowForwardIos className="text-[clamp(0.2rem,1vw,1rem)]"/>
+              <MdArrowForwardIos className="text-[clamp(0.2rem,1vw,1rem)]" />
               <p className="text-center">Contact</p>
             </span>
           </div>
         </div>
       </div>
       <div className="w-full my-10 px-10 flex flex-col justify-between sm:flex-row ">
-        <form className="w-full flex flex-col h-100 sm:h-120 shadow-lg">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full flex flex-col h-100 sm:h-120 shadow-lg"
+        >
           <div className="w-full flex flex-col items-center sm:h-100 sm:mt-10">
             <input
               className="h-10 w-[80%] border rounded pl-3 my-2"
@@ -52,7 +61,10 @@ const Contact = () => {
               id=""
             ></textarea>
             <div className="w-full flex justify-center">
-              <button className="w-[80%] h-10 rounded-full bg-black text-white mb-10 ">
+              <button
+                type="submit"
+                className="w-[80%] h-10 rounded-full bg-black text-white mb-10 "
+              >
                 send message
               </button>
             </div>
@@ -91,4 +103,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
