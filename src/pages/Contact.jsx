@@ -9,7 +9,7 @@ const Contact = () => {
     <section className="w-full contact flex flex-col">
       <div className="relative flex">
         <img
-          className="relative z-0 w-full top-0 left-0 h-60 object-cover sm:h-170 sm:top-0 md:h-170"
+          className="relative z-0 w-full top-0 left-0 h-100 object-cover sm:h-170 sm:top-0 md:h-170"
           src={heroImage}
           alt=" hero image"
         />
@@ -57,9 +57,9 @@ const Contact = () => {
           </div>
         </form>
 
-        <div className="w-full flex flex-col h-80 mt-15 md:ml-10  sm:h-130 sm:mt-10">
+        <div className="w-full flex flex-col h-80 mt-15 md:ml-10 sm:ml:10 sm:h-130 sm:mt-10">
           <h1 className="text-[clamp(1rem,5vw,3rem)]">Get In Touch</h1>
-          <p>
+          <p className="text-left">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s,
