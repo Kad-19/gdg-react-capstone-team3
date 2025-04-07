@@ -1,15 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import heroImage from "../assets/unsplash_JFFvPHkGTyQ.svg";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(
+        `https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Messages`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      if (response.ok) {
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        setSubmitStatus("successful");
+        setTimeout(() => setSubmitStatus(null), 2000);
+      } else {
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus(null), 2000);
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus(null), 2000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="w-full contact flex flex-col">
       <div className="relative flex">
         <img
-          className="relative z-0 w-full top-0 left-0 h-100 object-cover sm:h-170 sm:top-0 md:h-170"
+          className="relative z-0 w-full top-0 left-0 h-100 object-cover sm:h-120 sm:top-0 md:h-170"
           src={heroImage}
           alt=" hero image"
         />
@@ -31,27 +84,59 @@ const Contact = () => {
             <input
               className="h-10 w-[80%] border rounded pl-3 my-2"
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               placeholder="your name "
+              required
             />
             <input
               className="h-10 w-[80%] border rounded pl-3  my-2"
               type="text"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="your email"
+              required
             />
             <input
               className="h-10 w-[80%] border rounded pl-3  my-2"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
               type="text"
               placeholder="your subject"
+              required
             />
             <textarea
               className="w-[80%] h-30 border rounded pl-3 sm:h-40  my-2 mb-7 "
-              name=""
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
               placeholder="your message"
+              required
               id=""
             ></textarea>
+            {submitStatus ===
+              "successful" && (
+                <div className="w-[80%] mb-4 p-2 bg-green-100 text-green-800 rounded">
+                  Message sent successfully!
+                </div>
+              )}
+            {submitStatus ===
+              "error" && (
+                <div className="w-[80%] mb-4 p-2 bg-green-100 text-red-800 rounded">
+                  Error sending message please try again
+                </div>
+              )}
+
             <div className="w-full flex justify-center">
-              <button className="w-[80%] h-10 rounded-full bg-black text-white mb-10 ">
-                send message
+              <button
+                className="w-[80%] h-10 cursor:pointer rounded-full bg-black text-white mb-10 disabled:bg-gray-400 "
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "sending" : "send message"}
               </button>
             </div>
           </div>
@@ -89,4 +174,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
