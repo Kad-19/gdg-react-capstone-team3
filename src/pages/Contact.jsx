@@ -5,6 +5,7 @@ import { IoLocation } from "react-icons/io5";
 import { MdArrowForwardIos } from "react-icons/md";
 
 const Contact = () => {
+  // array of objects
   const [formData, setFormData] = useState({
     name: "",
     email: "",
