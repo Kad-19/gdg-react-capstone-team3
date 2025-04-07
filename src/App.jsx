@@ -11,7 +11,8 @@ import PackageDetail from './pages/PackageDetail';
 import Destinations from './pages/Destinations';
 
 const App = () => {
-  return (
+  return (  
+   
     <Router>
       <div className="min-h-screen flex flex-col">
         <Navbar />
@@ -37,6 +38,7 @@ const App = () => {
         <Footer />
       </div>
     </Router>
+  
   );
 };
 
