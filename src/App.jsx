@@ -13,7 +13,9 @@ import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <BrowserRouter>
+
+
+    <Router>
       <div className="min-h-screen flex flex-col">
         <Navbar />
 
@@ -31,11 +33,9 @@ const App = () => {
 
             <Route path="/destinations" element={<Destinations />} />
           </Routes>
-        </main>
 
         <Footer />
       </div>
-    </BrowserRouter>
   );
 };
 
