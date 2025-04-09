@@ -273,4 +273,8 @@ const Contacts = () => {
   );
 };
 
+<<<<<<< HEAD
 export default BlogDetail;
+=======
+export default BlogDetail;
+>>>>>>> 76475c28d38b6fab530a2a098a76206706e6efcb
