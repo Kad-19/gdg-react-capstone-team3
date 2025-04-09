@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -13,29 +13,22 @@ import Footer from "./components/Footer";
 
 const App = () => {
   return (
-
-
-    <Router>
+    <BrowserRouter>
       <div className="min-h-screen flex flex-col">
         <Navbar />
-
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/blogs/:slug" element={<BlogDetail />} />
-
-            <Route path="/packages" element={<Packages />} />
-            <Route path="/packages/:slug" element={<PackageDetail />} />
-
-            <Route path="/destinations" element={<Destinations />} />
-          </Routes>
-
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/aboutus" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogDetail />} />
+          <Route path="/packages" element={<Packages />} />
+          <Route path="/packages/:slug" element={<PackageDetail />} />
+          <Route path="/destinations" element={<Destinations />} />
+        </Routes>
         <Footer />
       </div>
+    </BrowserRouter>
   );
 };
 
