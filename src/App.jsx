@@ -13,29 +13,28 @@ import Footer from "./components/Footer";
 
 const App = () => {
   return (
+    /*<Router>
+    { <div className="min-h-screen flex flex-col">
+      <Navbar />
 
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
 
-    <Router>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogDetail />} />
 
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+          <Route path="/packages" element={<Packages />} />
+          <Route path="/packages/:slug" element={<PackageDetail />} />
 
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/blogs/:slug" element={<BlogDetail />} />
-
-            <Route path="/packages" element={<Packages />} />
-            <Route path="/packages/:slug" element={<PackageDetail />} />
-
-            <Route path="/destinations" element={<Destinations />} />
-          </Routes>
-
-        <Footer />
-      </div>
+          <Route path="/destinations" element={<Destinations />} />
+        </Routes>
+      </main>
+      <Footer /> }
+    </div>*/
+    <BlogDetail />
   );
 };
 
