@@ -5,13 +5,6 @@ import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { MdArrowForwardIos } from "react-icons/md";
 
-const Contact = () => {
-  // array of objects
-import heroImage from "../assets/image/unsplash_JFFvPHkGTyQ.svg";
-import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-import { IoLocation } from "react-icons/io5";
-import { MdArrowForwardIos } from "react-icons/md";
-import { Link } from "react-router-dom";
 
 const Contact = () => {
 
@@ -75,7 +68,7 @@ const Contact = () => {
 
           className="relative z-0 w-full top-0 left-0 h-100 object-cover sm:h-120 md:h-170 md:top-0 sm:top-0"
 
-          className="relative z-0 w-full top-0 left-0 min-h-screen bg-center object-cover  md:top-0 sm:top-0"
+          
 
           src={heroImage}
           alt="hero image"
@@ -105,7 +98,6 @@ const Contact = () => {
 
         <form
 
-        <form 
 
           onSubmit={handleSubmit}
           className="w-full flex flex-col h-100 sm:h-120 shadow-[0_0_10px_rgba(0,0,0,0.1)]"

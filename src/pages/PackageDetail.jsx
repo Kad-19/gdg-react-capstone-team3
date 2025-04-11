@@ -1,125 +1,134 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
-const PackageDetail = () => {
-  const { id } = useParams();
-  
-  // Sample data - replace with API call in real app
-  const packageDetails = {
+import Paris from '../assets/image/destinations/Paris.png';
+import Swiss from '../assets/image/destinations/Swiss.png';
+import Thailand from '../assets/image/destinations/Thailand.png';
+import Taiwan from '../assets/image/destinations/Taiwan.png';
+import Indonesi from '../assets/image/destinations/Indonesi.png';
+import Singapore from '../assets/image/destinations/Singapore.png';
+
+const packages = [
+  {
     id: 1,
-    title: "Exotic National Scenery",
-    image: "/images/package1-large.jpg",
-    description: "Logicare now worlds with exotic national scenery",
-    fullDescription: "This package takes you through the most breathtaking landscapes our country has to offer. Experience the beauty of our national parks and scenic routes. This 7-day adventure includes guided tours, comfortable accommodations, and all transportation. Perfect for nature lovers and photography enthusiasts.",
-    duration: "7 Days / 6 Nights",
-    price: "$1200",
-    highlights: [
-      "Visit 5 national parks",
-      "Professional photography guidance",
-      "Luxury camping experience",
-      "Local cuisine tasting"
-    ],
-    itinerary: [
-      { day: 1, title: "Arrival Day", description: "Welcome dinner and orientation" },
-      { day: 2, title: "Mountain Exploration", description: "Full-day guided mountain tour" },
-      { day: 3, title: "National Park Adventure", description: "Wildlife spotting and nature walks" },
-    ],
-    testimonials: [
-      { author: "Sarah J.", quote: "The scenery was absolutely breathtaking!" },
-      { author: "Michael T.", quote: "Best organized tour I've ever been on." }
-    ]
-  };
+    title: "Paris",
+    image: Paris,
+    description: "City of lights with a rich culture and heritage.",
+    duration: "3 Days / 2 Nights",
+    price: "$299.00",
+    rating: 5
+  },
+  {
+    id: 2,
+    title: "Swiss",
+    image: Swiss,
+    description: "A breathtaking alpine escape with snowy peaks.",
+    duration: "3 Days / 2 Nights",
+    price: "$290.00",
+    rating: 5
+  },
+  {
+    id: 3,
+    title: "Thailand",
+    image: Thailand,
+    description: "Tropical beaches, temples, and street food adventures.",
+    duration: "3 Days / 2 Nights",
+    price: "$299.00",
+    rating: 5
+  },
+  {
+    id: 4,
+    title: "Taiwan",
+    image: Taiwan,
+    description: "A vibrant mix of tradition, nature, and modernity.",
+    duration: "3 Days / 2 Nights",
+    price: "$299.00",
+    rating: 5
+  },
+  {
+    id: 5,
+    title: "Indonesia",
+    image: Indonesi,
+    description: "Explore islands, volcanoes, and diverse cultures.",
+    duration: "3 Days / 2 Nights",
+    price: "$300.00",
+    rating: 5
+  },
+  {
+    id: 6,
+    title: "Singapore",
+    image: Singapore,
+    description: "Futuristic skyline with rich multicultural roots.",
+    duration: "3 Days / 2 Nights",
+    price: "$299.00",
+    rating: 5
+  }
+];
+
+const renderStars = (rating) => {
+  return (
+    <div className="flex gap-1 mb-2">
+      {[...Array(5)].map((_, i) => (
+        <span key={i} className={i < rating ? "text-yellow-400" : "text-gray-300"}>★</span>
+      ))}
+    </div>
+  );
+};
+
+const PackageDetails = () => {
+  const { id } = useParams();
+  const pkg = packages.find((p) => p.id === parseInt(id));
+
+  if (!pkg) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-center">
+        <p className="text-xl text-gray-700">Package not found.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Package Header */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold mb-4">{packageDetails.title}</h1>
-        <img 
-          src={packageDetails.image} 
-          alt={packageDetails.title} 
-          className="w-full h-96 object-cover rounded-lg"
-        />
-      </div>
-
-      {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column - Main Content */}
-        <div className="lg:col-span-2">
-          <h2 className="text-2xl font-semibold mb-4">Package Overview</h2>
-          <p className="text-gray-700 mb-6">{packageDetails.fullDescription}</p>
-
-          {/* Highlights */}
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold mb-3">Highlights</h3>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              {packageDetails.highlights.map((highlight, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="text-blue-500 mr-2">✓</span>
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Itinerary */}
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold mb-4">Itinerary</h3>
-            <div className="space-y-4">
-              {packageDetails.itinerary.map((day) => (
-                <div key={day.day} className="border-l-4 border-blue-500 pl-4 py-2">
-                  <h4 className="font-semibold">Day {day.day}: {day.title}</h4>
-                  <p className="text-gray-600">{day.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column - Booking Info */}
-        <div className="lg:col-span-1">
-          <div className="bg-gray-50 p-6 rounded-lg sticky top-4">
-            <h3 className="text-xl font-semibold mb-4">Package Details</h3>
-            
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-medium text-gray-500">Duration</h4>
-                <p>{packageDetails.duration}</p>
-              </div>
-              
-              <div>
-                <h4 className="font-medium text-gray-500">Price</h4>
-                <p className="text-2xl font-bold">{packageDetails.price}</p>
-                <p className="text-sm text-gray-500">per person</p>
-              </div>
-              
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-300">
-                Book Now
-              </button>
-              
-              <div className="pt-4 border-t border-gray-200">
-                <h4 className="font-medium mb-2">Need help?</h4>
-                <p className="text-sm text-gray-600">Contact our travel experts for any questions.</p>
-              </div>
-            </div>
-          </div>
+    <div className="min-h-screen bg-white">
+      {/* Hero */}
+      <div className="relative min-h-screen">
+        <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
+          <h1 className="text-5xl font-bold mb-2">{pkg.title}</h1>
+          <p className="text-sm font-medium">Home &gt; Packages &gt; {pkg.title}</p>
         </div>
       </div>
 
-      {/* Testimonials */}
-      <div className="mt-16">
-        <h2 className="text-2xl font-semibold mb-6">What Our Clients Say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {packageDetails.testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-gray-50 p-6 rounded-lg">
-              <p className="italic mb-3">"{testimonial.quote}"</p>
-              <p className="font-medium">— {testimonial.author}</p>
-            </div>
-          ))}
+      {/* Content */}
+      <div className="container mx-auto px-4 py-20">
+        <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+          <h2 className="text-3xl font-bold mb-4">{pkg.title}</h2>
+          <p className="text-gray-600 mb-4">{pkg.description}</p>
+
+          <div className="mb-6">
+            {renderStars(pkg.rating)}
+            <p className="text-gray-700 mb-1"><strong>Duration:</strong> {pkg.duration}</p>
+            <p className="text-gray-700"><strong>Price:</strong> {pkg.price}</p>
+          </div>
+
+          <Link
+            to="#"
+            className="bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-all"
+          >
+            Book Now
+          </Link>
+
+          <div className="mt-6">
+            <Link
+              to="/packages"
+              className="text-blue-600 hover:underline text-sm"
+            >
+              ← Back to Packages
+            </Link>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default PackageDetail;
+export default PackageDetails;

@@ -75,8 +75,4 @@ const blogs = () => {
   );
 };
 
-<<<<<<< HEAD
 export default blogs;
-=======
-export default blogs;
->>>>>>> 76475c28d38b6fab530a2a098a76206706e6efcb
