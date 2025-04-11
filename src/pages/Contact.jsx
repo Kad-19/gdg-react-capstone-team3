@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import heroImage from "../assets/image/unsplash_JFFvPHkGTyQ.svg";
+
+import heroImage from "../assets/unsplash_JFFvPHkGTyQ.svg";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { MdArrowForwardIos } from "react-icons/md";
-import { Link } from "react-router-dom";
+
 
 const Contact = () => {
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -63,7 +65,11 @@ const Contact = () => {
     <section className="w-full contact flex flex-col">
       <div className="relative flex">
         <img
-          className="relative z-0 w-full top-0 left-0 min-h-screen bg-center object-cover  md:top-0 sm:top-0"
+
+          className="relative z-0 w-full top-0 left-0 h-100 object-cover sm:h-120 md:h-170 md:top-0 sm:top-0"
+
+          
+
           src={heroImage}
           alt="hero image"
         />
@@ -71,6 +77,11 @@ const Contact = () => {
           <div>
             <h1 className="text-center text-[clamp(1rem,5vw,3rem)]">Contact</h1>
             <span className="inline-flex items-center text-[clamp(0.5rem,2vw,2.5rem)] space-x-2 pl-3">
+
+              <p className="text-center">Home</p>
+              <MdArrowForwardIos className="text-[clamp(0.2rem,1vw,1rem)]" />
+              <p className="text-center">Contact</p>
+
               <Link
               to = '/'
                className="text-center">Home</Link>
@@ -78,12 +89,16 @@ const Contact = () => {
               <Link 
               to='/contact'
               className="text-center">Contact</Link>
+
             </span>
           </div>
         </div>
       </div>
       <div className="w-full my-10 px-10 flex flex-col justify-between sm:flex-row">
-        <form 
+
+        <form
+
+
           onSubmit={handleSubmit}
           className="w-full flex flex-col h-100 sm:h-120 shadow-[0_0_10px_rgba(0,0,0,0.1)]"
         >
@@ -123,7 +138,7 @@ const Contact = () => {
               placeholder="your message"
               required
             ></textarea>
-            
+
             {submitStatus === "successful" && (
               <div className="w-[80%] mb-4 p-2 bg-green-100 text-green-800 rounded">
                 Message sent successfully!
@@ -178,4 +193,6 @@ const Contact = () => {
   );
 };
 
+
 export default Contact;
+

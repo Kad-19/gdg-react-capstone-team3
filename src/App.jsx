@@ -12,7 +12,7 @@ import Destinations from "./pages/Destinations";
 import Footer from "./components/Footer";
 
 const App = () => {
-  return ( 
+  return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col">
         <Navbar />
@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:slug" element={<BlogDetail />} />
           <Route path="/packages" element={<Packages />} />
-          <Route path="/packages/:slug" element={<PackageDetail />} />
+          <Route path="/packages/:id" element={<PackageDetail />} />
           <Route path="/destinations" element={<Destinations />} />
         </Routes>
         <Footer />
