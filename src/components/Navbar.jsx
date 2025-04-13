@@ -4,7 +4,7 @@
  import { IoMdArrowDropdown } from "react-icons/io";
  import { Link } from "react-router-dom";
  import { NavItems } from "./NavItems";
- import Logo from "../assets/image/logo/logo1 1.svg";
+ import Logo from "../assets/image/logo/logo1_1.svg";
  import { GiHamburgerMenu, GiCrossMark } from "react-icons/gi";
  
  import {

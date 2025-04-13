@@ -7,7 +7,7 @@
  import { FaLocationDot } from "react-icons/fa6";
  import { MdOutlineLocalPostOffice } from "react-icons/md";
  import { FaPhone } from "react-icons/fa";
- import Logo from '../assets/image/logo/logo1 1.svg'
+ import Logo from '../assets/image/logo/logo1_1.svg'
  
  const Footer = () => {
 
