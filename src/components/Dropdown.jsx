@@ -56,7 +56,7 @@ export const BlogsDropdown = () => {
     const fetchBlogs = async () => {
       try {
         const response = await fetch(
-          "https://67f9ff65094de2fe6ea2dc4b.mockapi.io/blogs"
+          "https://67fc07891f8b41c816858fe2.mockapi.io/blogs"
         );
         const data = await response.json();
         setBlogs(data);
@@ -67,6 +67,13 @@ export const BlogsDropdown = () => {
 
     fetchBlogs();
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  };
 
   return (
     <ul
@@ -83,11 +90,14 @@ export const BlogsDropdown = () => {
           className="px-4 py-2 text-white hover:bg-gray-900 transition-all ease-in-out duration-300 hover:cursor-pointer"
         >
           <Link
-            onClick={() => setDropdown(false)}
-            to={item.path}
+            onClick={() => {
+              setDropdown(false);
+              scrollToTop();
+            }}
+            to={`/blogs/${item.id}`}
             className="text-white-700 font-medium transition-all ease-in-out duration-300"
           >
-            {item.title}
+            {item.tag}
           </Link>
         </li>
       ))}
@@ -103,7 +113,7 @@ export const DestinationsDropdown = () => {
     const fetchDestinations = async () => {
       try {
         const response = await fetch(
-         `https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations`,
+          `https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations`
         );
         const data = await response.json();
         setDestinations(data);
@@ -114,6 +124,13 @@ export const DestinationsDropdown = () => {
 
     fetchDestinations();
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  };
 
   return (
     <ul
@@ -130,8 +147,11 @@ export const DestinationsDropdown = () => {
           className="px-4 py-2 text-white hover:bg-gray-900 transition-all ease-in-out duration-300 hover:cursor-pointer"
         >
           <Link
-            onClick={() => setDropdown(false)}
-            to={item.path}
+            onClick={() => {
+              setDropdown(false);
+              scrollToTop();
+            }}
+            to={`/packages/${item.id}`}
             className="text-white-700 font-medium transition-all ease-in-out duration-300"
           >
             {item.title}
