@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaUser,
   FaCalendarAlt,
@@ -15,6 +15,7 @@ import couples from "../assets/image/blogs and blogdetail/couples.png";
 import postone from "../assets/image/blogs and blogdetail/postone.png";
 import posttwo from "../assets/image/blogs and blogdetail/posttwo.png";
 import postthree from "../assets/image/blogs and blogdetail/postthree.png";
+import { useParams } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 
 const BlogDetail = () => {
@@ -28,44 +29,88 @@ const BlogDetail = () => {
 };
 
 const Banner = () => {
+  const { id } = useParams();
+  const [blogs, setBlogs] = useState(null);
+  console.log(id);
+
+  useEffect(() => {
+    fetch(`https://67fc07891f8b41c816858fe2.mockapi.io/blogs/${id}`)
+      .then((res) => res.json())
+      .then((data) => setBlogs(data))
+      .catch((err) => console.error("Failed to fetch package detail:", err));
+  }, [id]);
+
+  if (!blogs) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-center">
+        <p className="text-xl text-gray-700">Package not found.</p>
+      </div>
+    );
+  }
+
   return (
-    <div
-      className="relative h-[400px] md:h-[500px] bg-cover bg-center flex items-end pb-10"
-      style={{
-        backgroundImage: `url(${travel})`,
-      }}
-    >
-      {/* Dark overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black/30 justify-center"></div>
+<div
+  className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center pb-0" // Changed items-end to items-center and removed pb-10
+  style={{
+    backgroundImage: `url(${travel})`,
+  }}
+>
+  {/* Dark overlay for better text visibility */}
+  <div className="absolute inset-0 bg-black/30 justify-center">
+  </div>
 
-      <header className="container mx-auto px-4 relative z-10 text-white text-center">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Travel Stories for now <br />
-            and the future
-          </h1>
+  <header className="w-full px-4 relative z-10 text-white text-center">
+    <div className="mx-auto flex flex-col items-center justify-center max-w-screen-md">
+      <div className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-center">
+        {blogs && (
+          <h1>{blogs.title}</h1>
+          
+        )
 
-          <div className="flex flex-wrap justify-center gap-6 text-lg">
-            <div className="flex items-center justify-center gap-2">
-              <FaUser className="text-xl" />
-              <span>Hasmar</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <FaCalendarAlt className="text-xl" />
-              <span>January 18, 2025</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <FaFolder className="text-xl" />
-              <span>Stories, Tips</span>
-            </div>
-          </div>
+        }
+       
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-6 text-lg">
+        <div className="flex items-center justify-center gap-2">
+          <FaUser className="text-xl" />
+          <span>Hasmar</span>
         </div>
-      </header>
+        <div className="flex items-center justify-center gap-2">
+          <FaCalendarAlt className="text-xl" />
+          <span>January 18, 2025</span>
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <FaFolder className="text-xl" />
+          <span>Stories, Tips</span>
+        </div>
+      </div>
     </div>
+  </header>
+</div>
   );
 };
 
 const Mainblog = () => {
+  const { id } = useParams();
+  const [blogs, setBlogs] = useState(null);
+  console.log(id);
+
+  useEffect(() => {
+    fetch(`https://67fc07891f8b41c816858fe2.mockapi.io/blogs/${id}`)
+      .then((res) => res.json())
+      .then((data) => setBlogs(data))
+      .catch((err) => console.error("Failed to fetch package detail:", err));
+  }, [id]);
+
+  if (!blogs) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-center">
+        <p className="text-xl text-gray-700">Package not found.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col lg:flex-row gap-10 px-4 lg:px-16 py-10 bg-white text-black">
       {/* Main Blog Content */}
@@ -74,47 +119,21 @@ const Mainblog = () => {
           src={vacation}
           className="w-full h-[400px] object-cover rounded-lg"
         />
-        <p className="text-black-300 leading-relaxed text-[15px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </p>
-        <h2 className="text-2xl font-semibold text-black">
-          Rice Terraces, Tegalialang
-        </h2>
-        <p className="text-black-300 leading-relaxed text-[15px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident.
-        </p>
+
+        {blogs && (
+          <>
+            <p>{blogs.paragraph1}</p>
+            <h2 className="text-[clamp(1rem,2vw,2rem)] font-semibold mb-4">
+              {blogs.header}
+            </h2>
+            <p>{blogs.paragraph2}</p>
+          </>
+        )}
         <img
           src={couples}
           className="w-full h-[400px] object-cover rounded-lg"
         />
-        <p className="text-black-300 leading-relaxed text-[15px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </p>
+        {blogs && <p>{blogs.paragraph3}</p>}
         <div className="flex justify-between items-center pt-4 text-sm text-black-400 border-t border-gray-700">
           <span>Tags : Destination, Travel</span>
           <span className="flex items-center gap-2">
@@ -172,7 +191,7 @@ const Mainblog = () => {
           <p className="text-sm text-gray-400 mb-4">
             Do not hesitage to give us a call. We are an expert team and we are
             happy to talk to you.
-          </p>
+          </p>    
           <p className="flex items-center gap-2 text-sm">
             <FaPhone />
             +62 6943 6956
