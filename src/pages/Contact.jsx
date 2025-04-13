@@ -4,6 +4,7 @@ import heroImage from "../assets/unsplash_JFFvPHkGTyQ.svg";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { MdArrowForwardIos } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 
 const Contact = () => {

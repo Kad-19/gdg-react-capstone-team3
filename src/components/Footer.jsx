@@ -6,19 +6,25 @@ import newsletterImage from "../assets/image/footer/Newsletter.jpg";
 
 const Footer = () => {
   return (
-    <div className="bg-black">
+    <div className="relative bg-black">
       {/* Newsletter Section */}
       <div
-        className=" bg-cover bg-center text-white py-16 px-4"
+        className="text-white flex flex-col justify-center items-center"
+      >
+        <img src={newsletterImage} alt="Newsletter" className="text-white"
         style={{
           backgroundImage: `url(${newsletterImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
           height: "400px",
-        }}
-      >
-        <div className="text-center">
+          width: "100%",
+          objectFit: "cover",
+          maxWidth: "100%",
+          backgroundAttachment: "fixed",
+          
+          filter: "blur(3px)",
+        }} />
+        <div className="text-center absolute p-10">
           <h2 className="text-3xl font-bold mb-4">
             Subscribe to get special prices
           </h2>
@@ -32,7 +38,7 @@ const Footer = () => {
               placeholder="Type your email here"
               className="px-4 py-2 rounded-l-md text-black bg-white focus:outline-none"
             />
-            <button className="bg-black/75 hover:bg-black hover:cursor-pointer text-white px-6 py-2 rounded-r-md transition-all ease-in-out duration-300">
+            <button className="bg-black/65 hover:bg-black hover:cursor-pointer text-white px-6 py-2 rounded-r-md transition-all ease-in-out duration-300">
               Subscribe
             </button>
           </div>
