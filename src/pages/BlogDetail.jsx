@@ -274,4 +274,3 @@ const Contacts = () => {
 };
 
 export default BlogDetail;
-
