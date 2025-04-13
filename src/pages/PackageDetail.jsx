@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import { MdArrowForwardIos } from "react-icons/md";
 import Paris from "../assets/image/destination/Paris.png";
 import Swiss from "../assets/image/destination/Swiss.png";
 import Thailand from "../assets/image/destination/Thailand.png";
@@ -46,6 +47,13 @@ const PackageDetail = () => {
     );
   }
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
@@ -53,13 +61,19 @@ const PackageDetail = () => {
         <img
           src={images[pkg.id - 1]}
           alt={pkg.title}
-          className="w-full h-full object-cover"
+          className="w-full min-h-screen object-cover"
         />
         <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
           <h1 className="text-5xl font-bold mb-2">{pkg.title}</h1>
-          <p className="text-sm font-medium">
-            Home &gt; Packages &gt; {pkg.title}
-          </p>
+          <span className="inline-flex items-center text-[clamp(0.5rem,2vw,2.5rem)] space-x-2 pl-3">
+            <Link to="/" className="text-center" onClick={scrollToTop}>
+              Home
+            </Link>
+            <MdArrowForwardIos className="text-[clamp(0.2rem,1vw,1rem)]" />
+            <Link to="/contact" className="text-center" onClick={scrollToTop}>
+              Contact
+            </Link>
+          </span>
         </div>
       </div>
 
@@ -90,6 +104,7 @@ const PackageDetail = () => {
             <Link
               to="/packages"
               className="text-blue-600 hover:underline text-sm"
+              onClick={scrollToTop}
             >
               ← Back to Packages
             </Link>

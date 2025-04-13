@@ -4,6 +4,7 @@ import heroImage from "../assets/unsplash_JFFvPHkGTyQ.svg";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { MdArrowForwardIos } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -69,11 +70,9 @@ const Contact = () => {
         />
         <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-white">
           <div>
-            <h1 className="text-center text-[clamp(1rem,5vw,3rem)]">Contact</h1>
+            <h1 className="text-center font-bold text-[clamp(1rem,5vw,3rem)]">Contact</h1>
             <span className="inline-flex items-center text-[clamp(0.5rem,2vw,2.5rem)] space-x-2 pl-3">
-              <p className="text-center">Home</p>
-              <MdArrowForwardIos className="text-[clamp(0.2rem,1vw,1rem)]" />
-              <p className="text-center">Contact</p>
+              
 
               <Link to="/" className="text-center">
                 Home
@@ -183,3 +182,5 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
