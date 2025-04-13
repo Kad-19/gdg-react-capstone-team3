@@ -1,35 +1,41 @@
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useState } from 'react';
-import { useEffect } from 'react';
-
-import Paris from '../assets/image/destination/Paris.png';
-import Swiss from '../assets/image/destination/Swiss.png';
-import Thailand from '../assets/image/destination/Thailand.png';
-import Taiwan from '../assets/image/destination/Taiwan.png';
-import Indonesi from '../assets/image/destination/Indonesi.png';
-import Singapore from '../assets/image/destination/Singapore.png';
+import React from "react";
+import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import Paris from "../assets/image/destination/Paris.png";
+import Swiss from "../assets/image/destination/Swiss.png";
+import Thailand from "../assets/image/destination/Thailand.png";
+import Taiwan from "../assets/image/destination/Taiwan.png";
+import Indonesi from "../assets/image/destination/Indonesi.png";
+import Singapore from "../assets/image/destination/Singapore.png";
 
 const renderStars = (rating) => {
   return (
     <div className="flex gap-1 mb-2">
       {[...Array(5)].map((_, i) => (
-        <span key={i} className={i < rating ? "text-yellow-400" : "text-gray-300"}>★</span>
+        <span
+          key={i}
+          className={i < rating ? "text-yellow-400" : "text-gray-300"}
+        >
+          ★
+        </span>
       ))}
     </div>
   );
 };
 
 const PackageDetail = () => {
-  const images = [Paris , Swiss , Thailand , Taiwan , Indonesi , Singapore]
+  const images = [Paris, Swiss, Thailand, Taiwan, Indonesi, Singapore];
   const { id } = useParams();
   const [pkg, setPkg] = useState(null);
 
   useEffect(() => {
-    fetch(`https://67eadc5834bcedd95f64c9f3.mockapi.io/RebelRover/Destinations/${id}`)
-      .then(res => res.json())
-      .then(data => setPkg(data))
-      .catch(err => console.error('Failed to fetch package detail:', err));
+    fetch(
+      `https://67eadc5834bcedd95f64c9f3.mockapi.io/RebelRover/Destinations/${id}`
+    )
+      .then((res) => res.json())
+      .then((data) => setPkg(data))
+      .catch((err) => console.error("Failed to fetch package detail:", err));
   }, [id]);
 
   if (!pkg) {
@@ -44,10 +50,16 @@ const PackageDetail = () => {
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <div className="relative min-h-screen">
-        <img src={images[pkg.id - 1]} alt={pkg.title} className="w-full h-full object-cover" />
+        <img
+          src={images[pkg.id - 1]}
+          alt={pkg.title}
+          className="w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
           <h1 className="text-5xl font-bold mb-2">{pkg.title}</h1>
-          <p className="text-sm font-medium">Home &gt; Packages &gt; {pkg.title}</p>
+          <p className="text-sm font-medium">
+            Home &gt; Packages &gt; {pkg.title}
+          </p>
         </div>
       </div>
 
@@ -59,8 +71,12 @@ const PackageDetail = () => {
 
           <div className="mb-6">
             {renderStars(pkg.rating)}
-            <p className="text-gray-700 mb-1"><strong>Duration:</strong> {pkg.duration}</p>
-            <p className="text-gray-700"><strong>Price:</strong> {pkg.price}</p>
+            <p className="text-gray-700 mb-1">
+              <strong>Duration:</strong> {pkg.duration}
+            </p>
+            <p className="text-gray-700">
+              <strong>Price:</strong> {pkg.price}
+            </p>
           </div>
 
           <Link
@@ -85,4 +101,3 @@ const PackageDetail = () => {
 };
 
 export default PackageDetail;
-
