@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 import { IoMdArrowDropdown } from "react-icons/io";
+import companyLogo from "../assets/image/logo/logo1_1.svg";
 import { Link } from "react-router-dom";
 import {
   PackagesDropdown,
@@ -14,9 +15,14 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="flex absolute w-full bg-gray-800/50 text-teal-50 items-center justify-between px-8 py-4 border-b border-white-300">
+      <nav className="flex absolute w-full bg-gray-800/50 text-teal-50 items-center justify-between px-8 py-4 border-b border-white-300 z-10">
         <Link to="/" className="text-2xl font-bold text-white-700">
-          COMPANY NAME
+          <div
+            className="bg-no-repeat bg-center bg-cover w-100 h-20 rounded-full"
+            style={{
+              backgroundImage: `url(${companyLogo})`,
+            }}
+          />
         </Link>
         <ul>
           {/* Home Link */}
@@ -87,7 +93,7 @@ const Navbar = () => {
           >
             <Link
               to="/destinations"
-              panclassName="text-white-700 font-medium hover:text-white-500 hover:underline transition-all ease-in-out duration-300 cursor-pointer"
+              className="text-white-700 font-medium hover:text-white-500 hover:underline transition-all ease-in-out duration-300 cursor-pointer"
             >
               Destinations
               <IoMdArrowDropdown className="inline" />

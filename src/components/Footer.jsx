@@ -97,16 +97,16 @@ const Footer = () => {
             <h3 className="font-bold mb-4">Follow Us</h3>
             <div className="flex text-2xl space-x-4">
               <a href="#">
-                <FaFacebookF className="hover:text-black mr-1 transition-all ease-in-out duration-300" />
+                <FaFacebookF className="text-black hover:text-gray-700 hover:size-10 mr-1 transition-all ease-in-out duration-300" />
               </a>
               <a href="#">
-                <FaXTwitter className="hover:text-black mr-1 transition-all ease-in-out duration-300" />
+                <FaXTwitter className="text-black hover:text-gray-700 hover:size-10 mr-1 transition-all ease-in-out duration-300" />
               </a>
               <a href="#">
-                <FaYoutube className="hover:text-black mr-1 transition-all ease-in-out duration-300" />
+                <FaYoutube className="text-black hover:text-gray-700 hover:size-10 mr-1 transition-all ease-in-out duration-300" />
               </a>
               <a href="#">
-                <FaInstagram className="hover:text-black mr-1 transition-all ease-in-out duration-300" />
+                <FaInstagram className="text-black hover:text-gray-700 hover:size-10 mr-1 transition-all ease-in-out duration-300" />
               </a>
             </div>
           </div>
