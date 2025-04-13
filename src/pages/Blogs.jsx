@@ -23,7 +23,7 @@ const blogs = () => {
           <div className="flex gap-6 flex-col w-full sm:w-1/2">
             <div className="flex-grow bg-white rounded-lg shadow-lg pt-4 pr-4 pb-8 pl-6">
               <p className="font-normal text-lg">Perfect | Tips</p>
-              <h4 className="text-xl font-medium text-2xl leading-tight">
+              <h4 className="text-2xl font-medium leading-tight">
                 9 Popular Travel Destinations on Sale in 2022
                 <br />-
               </h4>
@@ -37,7 +37,7 @@ const blogs = () => {
             </div>
             <div className="flex-grow bg-white rounded-lg shadow-lg pt-4 pr-4 pb-8 pl-6">
               <p className="font-normal text-lg">Tips | Travel</p>
-              <h4 className="text-xl font-medium text-2xl leading-tight">
+              <h4 className="text-2xl font-medium leading-tight">
                 How Are We Going to Travel in 2022
                 <br />-
               </h4>
@@ -58,7 +58,7 @@ const blogs = () => {
             />
             <div className="flex-grow pt-4 pr-4 pb-8 pl-6">
               <p className="font-normal text-lg">Stories | Tips</p>
-              <h4 className="text-xl font-medium text-2xl leading-tight">
+              <h4 className="text-2xl font-medium leading-tight">
                 Travel Stories For Now and the Future
               </h4>
               <p className="leading-6 text-faded-color text-base mb-6 mt-4">
