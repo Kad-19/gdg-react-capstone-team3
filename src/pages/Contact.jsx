@@ -60,7 +60,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="w-full contact flex flex-col">
+    <section className="w-screen flex flex-col">
       <div className="relative flex">
         <img
           className="relative z-0 w-full top-0 left-0 min-h-screen bg-center object-cover  md:top-0 sm:top-0"
@@ -179,3 +179,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

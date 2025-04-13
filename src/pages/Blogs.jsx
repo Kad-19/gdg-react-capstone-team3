@@ -6,7 +6,8 @@ import family from "../assets/image/blogs and blogdetail/family.png";
 const blogs = () => {
   return (
     <div className="mb-[178px]">
-      <img src={plane} alt="Airplane" className="w-full h-auto mb-[178px]" />
+      <img src={plane} alt="Airplane" 
+      className="w-full min-h-screen object-cover" />
       <div className="mx-4 sm:mx-16">
         <h2 className="text-2xl sm:text-4xl font-semibold">Tips & Article</h2>
         <div className="flex flex-col sm:flex-row justify-between items-center pt-10 pb-16">
