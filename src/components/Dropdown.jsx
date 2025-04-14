@@ -161,3 +161,62 @@ export const DestinationsDropdown = () => {
     </ul>
   );
 };
+
+function SearchDropdown(){
+  const [dropdown, setDropdown] = useState(false);
+  const [search, setSearch] = useState(null);
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        const response = await fetch(
+          "https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations"
+        );
+        const data = await response.json();
+        setSearch(data);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+
+    fetchDestinations();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  };
+
+  return (
+    <ul
+      className={
+        dropdown
+          ? "hidden absolute bg-gray-800/70 shadow-lg rounded-md py-2 w-30"
+          : "items-center justify-center overflow-y-auto max-h-30 absolute w-30 bg-gray-800/70 shadow-lg"
+      }
+      onClick={() => setDropdown(!dropdown)}
+    >
+      {search.map((item, index) => (
+        <li
+          key={index}
+          className="px-4 py-2 text-white hover:bg-gray-900 transition-all ease-in-out duration-300 hover:cursor-pointer"
+        >
+          <Link
+            onClick={() => {
+              setDropdown(false);
+              scrollToTop();
+            }}
+            to={`/packages/${item.id}`}
+            className="text-white-700 font-medium transition-all ease-in-out duration-300"
+          >
+            {item.country}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+
+  
+}
