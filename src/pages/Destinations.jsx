@@ -72,7 +72,7 @@ const Destinations = () => {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-2xl font-semibold text-black">{pkg.country}</h3>
-                  <span className="text-lg font-bold text-black">{pkg.price}</span>
+                  <span className="text-lg font-bold text-black">$ {pkg.price}</span>
                 </div>
                 <p className="text-gray-600 mb-4 text-sm">{pkg.description}</p>
                 <div className="flex items-center justify-between">

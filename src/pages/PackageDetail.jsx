@@ -266,7 +266,7 @@ const PackageDetail = () => {
               <strong>Duration:</strong> {pkg.duration}
             </p>
             <p className="text-gray-700">
-              <strong>Price:</strong> {pkg.price}
+              <strong>Price:</strong> ${pkg.price}
             </p>
           </div>
 
