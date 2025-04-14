@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   FaUser,
   FaCalendarAlt,
@@ -31,11 +32,8 @@ const BlogDetail = () => {
 const Banner = () => {
   const { id } = useParams();
   const [blogs, setBlogs] = useState(null);
- 
+
   console.log(id);
-
-  
-
 
   useEffect(() => {
     fetch(`https://67fc07891f8b41c816858fe2.mockapi.io/blogs/${id}`)
@@ -53,45 +51,38 @@ const Banner = () => {
   }
 
   return (
-<div
-  className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center pb-0" // Changed items-end to items-center and removed pb-10
-  style={{
-    backgroundImage: `url(${travel})`,
-  }}
->
-  {/* Dark overlay for better text visibility */}
-  <div className="absolute inset-0 bg-black/30 justify-center">
-  </div>
+    <div
+      className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center pb-0" // Changed items-end to items-center and removed pb-10
+      style={{
+        backgroundImage: `url(${travel})`,
+      }}
+    >
+      {/* Dark overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black/30 justify-center"></div>
 
-  <header className="w-full px-4 relative z-10 text-white text-center">
-    <div className="mx-auto flex flex-col items-center justify-center max-w-screen-md">
-      <div className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-center">
-        {blogs && (
-          <h1>{blogs.title}</h1>
-          
-        )
+      <header className="w-full px-4 relative z-10 text-white text-center">
+        <div className="mx-auto flex flex-col items-center justify-center max-w-screen-md">
+          <div className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-center">
+            {blogs && <h1>{blogs.title}</h1>}
+          </div>
 
-        }
-       
-      </div>
-
-      <div className="flex flex-wrap justify-center gap-6 text-lg">
-        <div className="flex items-center justify-center gap-2">
-          <FaUser className="text-xl" />
-          <span>{blogs.blogger}</span>
+          <div className="flex flex-wrap justify-center gap-6 text-lg">
+            <div className="flex items-center justify-center gap-2">
+              <FaUser className="text-xl" />
+              <span>{blogs.blogger}</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <FaCalendarAlt className="text-xl" />
+              <span>{blogs.date}</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <FaFolder className="text-xl" />
+              <span>{blogs.tag}</span>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <FaCalendarAlt className="text-xl" />
-          <span>{blogs.date}</span>
-        </div>
-        <div className="flex items-center justify-center gap-2">
-          <FaFolder className="text-xl" />
-          <span>{blogs.tag}</span>
-        </div>
-      </div>
+      </header>
     </div>
-  </header>
-</div>
   );
 };
 
@@ -140,8 +131,33 @@ const Mainblog = () => {
         {blogs && <p>{blogs.paragraph3}</p>}
         <div className="flex justify-between items-center pt-4 text-sm text-black-400 border-t border-gray-700">
           <span>Tags : Destination, Travel</span>
+
           <span className="flex items-center gap-2">
-            Share this: <FaFacebook /> <FaTwitter /> <FaLinkedin />
+            Share this:
+            <a
+              href={`https://www.facebook.com`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on Facebook"
+            >
+              <FaFacebook className="hover:text-blue-600 transition-colors" />
+            </a>
+            <a
+              href={`https://twitter.com`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on Twitter"
+            >
+              <FaTwitter className="hover:text-blue-400 transition-colors" />
+            </a>
+            <a
+              href={`https://www.linkedin.com`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on LinkedIn"
+            >
+              <FaLinkedin className="hover:text-blue-700 transition-colors" />
+            </a>
           </span>
         </div>
       </div>
@@ -179,10 +195,17 @@ const Mainblog = () => {
           <ul className="text-sm">
             {["Travel", "Tips", "Stories", "Destination"].map((lists, idx) => (
               <li key={idx} className="flex flex-col">
-                <div className="flex items-center gap-2 py-2">
+                <Link
+                  to={
+                    lists.toLowerCase() === "destination"
+                      ? "/Destinations"
+                      : "/blogs"
+                  }
+                  className="flex items-center gap-2 py-2 hover:bg-gray-100"
+                >
                   <FiArrowRight />
                   {lists}
-                </div>
+                </Link>
                 <div className="border-b border-gray-300" />
               </li>
             ))}
@@ -195,15 +218,27 @@ const Mainblog = () => {
           <p className="text-sm text-gray-400 mb-4">
             Do not hesitage to give us a call. We are an expert team and we are
             happy to talk to you.
-          </p>    
-          <p className="flex items-center gap-2 text-sm">
+          </p>
+          <p
+            className="flex items-center gap-2 text-sm cursor-pointer"
+            onClick={() => {
+              navigator.clipboard.writeText("+62 6943 6956");
+              alert("Phone number copied!");
+            }}
+            title="Click to copy"
+          >
             <FaPhone />
             +62 6943 6956
           </p>
-          <p className="flex items-center gap-2 text-sm mt-2">
+
+          <a
+            href="mailto:contact@domain.com"
+            className="flex items-center gap-2 text-sm mt-2"
+            title="Send an email"
+          >
             <FaEnvelope />
             contact@domain.com
-          </p>
+          </a>
         </div>
       </div>
     </div>
@@ -218,7 +253,15 @@ const Contacts = () => {
         Your email address will not be published. Required fields are marked *
       </p>
 
-      <form className="space-y-6">
+      <form
+        className="space-y-6"
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault(); // prevent page reload
+          alert("✅ Comment submitted! Thank you.");
+          e.target.reset();
+        }}
+      >
         {/* Comment Field */}
         <div>
           <label htmlFor="comment" className="block text-sm font-semibold mb-2">
@@ -227,7 +270,7 @@ const Contacts = () => {
           <textarea
             id="comment"
             rows="5"
-            className="w-full p-4 rounded-md bg-transparent border border-gray-400 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+            className="w-full p-4 rounded-md bg-transparent border border-gray-400 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
             placeholder="Write your comment..."
           />
         </div>
@@ -240,7 +283,7 @@ const Contacts = () => {
           <input
             type="text"
             id="name"
-            className="w-full p-3 rounded-md bg-transparent border border-gray-400 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+            className="w-full p-3 rounded-md bg-transparent border border-gray-400 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
             placeholder="Your name"
           />
         </div>
@@ -253,7 +296,7 @@ const Contacts = () => {
           <input
             type="email"
             id="email"
-            className="w-full p-3 rounded-md bg-transparent border border-gray-400 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+            className="w-full p-3 rounded-md bg-transparent border border-gray-400 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
             placeholder="you@example.com"
           />
         </div>
@@ -266,7 +309,7 @@ const Contacts = () => {
           <input
             type="text"
             id="website"
-            className="w-full p-3 rounded-md bg-transparent border border-gray-400 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+            className="w-full p-3 rounded-md bg-transparent border border-gray-400 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
             placeholder="https://yourwebsite.com"
           />
         </div>
