@@ -32,15 +32,30 @@ const BlogDetail = () => {
 const Banner = () => {
   const { id } = useParams();
   const [blogs, setBlogs] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   console.log(id);
 
   useEffect(() => {
     fetch(`https://67fc07891f8b41c816858fe2.mockapi.io/blogs/${id}`)
       .then((res) => res.json())
-      .then((data) => setBlogs(data))
-      .catch((err) => console.error("Failed to fetch package detail:", err));
+      .then((data) => {
+        setBlogs(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch package detail:", err);
+        setLoading(false);
+      });
   }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-center">
+        <p className="text-xl text-gray-700">Loading...</p>
+      </div>
+    );
+  }
 
   if (!blogs) {
     return (

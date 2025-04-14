@@ -191,16 +191,30 @@ const PackageDetail = () => {
   const { id } = useParams();
   const [pkg, setPkg] = useState(null);
   const [book, setBook] = useState(false);
-
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(
       `https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations/${id}`
     )
       .then((res) => res.json())
-      .then((data) => setPkg(data))
-      .catch((err) => console.error("Failed to fetch package detail:", err));
+      .then((data) => {
+        setPkg(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch package detail:", err);
+        setLoading(false);
+      });
   }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-center">
+        <p className="text-xl text-gray-700">Loading...</p>
+      </div>
+    );
+  }
 
   if (!pkg) {
     return (
@@ -261,7 +275,6 @@ const PackageDetail = () => {
             className="bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-all"
             onClick={() => {
               setBook(true);
-             
             }}
           >
             Book Now
