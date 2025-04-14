@@ -14,7 +14,7 @@ const Destinations = () => {
     const [packages, setPackages] = useState([]);
   
     useEffect(() => {
-      fetch('https://67eadc5834bcedd95f64c9f3.mockapi.io/Destinations')
+      fetch('https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations')
         .then(res => res.json())
         .then(data => setPackages(data))
         .catch(err => console.error('Failed to fetch packages:', err));

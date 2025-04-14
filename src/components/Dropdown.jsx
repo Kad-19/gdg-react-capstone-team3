@@ -80,7 +80,7 @@ export const BlogsDropdown = () => {
       className={
         dropdown
           ? "hidden absolute bg-gray-800/70 shadow-lg rounded-md py-2 w-30"
-          : "items-center justify-center absolute w-30 bg-gray-800/70 shadow-lg"
+          : "items-center justify-center overflow-y-auto max-h-30 absolute w-30 bg-gray-800/70 shadow-lg"
       }
       onClick={() => setDropdown(!dropdown)}
     >
@@ -136,8 +136,8 @@ export const DestinationsDropdown = () => {
     <ul
       className={
         dropdown
-          ? "hidden absolute bg-gray-800/50 shadow-lg rounded-md py-2 w-35"
-          : "items-center justify-center absolute w-35 bg-gray-800/50 shadow-lg"
+          ? "hidden absolute bg-gray-800/50  shadow-lg rounded-md py-2 w-35"
+          : "items-center overflow-y-auto max-h-30 justify-center absolute w-35 bg-gray-800/50 shadow-lg"
       }
       onClick={() => setDropdown(!dropdown)}
     >
@@ -154,7 +154,7 @@ export const DestinationsDropdown = () => {
             to={`/packages/${item.id}`}
             className="text-white-700 font-medium transition-all ease-in-out duration-300"
           >
-            {item.title}
+            {item.country}
           </Link>
         </li>
       ))}

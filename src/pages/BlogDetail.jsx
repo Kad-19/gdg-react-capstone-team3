@@ -31,7 +31,11 @@ const BlogDetail = () => {
 const Banner = () => {
   const { id } = useParams();
   const [blogs, setBlogs] = useState(null);
+ 
   console.log(id);
+
+  
+
 
   useEffect(() => {
     fetch(`https://67fc07891f8b41c816858fe2.mockapi.io/blogs/${id}`)
@@ -74,15 +78,15 @@ const Banner = () => {
       <div className="flex flex-wrap justify-center gap-6 text-lg">
         <div className="flex items-center justify-center gap-2">
           <FaUser className="text-xl" />
-          <span>Hasmar</span>
+          <span>{blogs.blogger}</span>
         </div>
         <div className="flex items-center justify-center gap-2">
           <FaCalendarAlt className="text-xl" />
-          <span>January 18, 2025</span>
+          <span>{blogs.date}</span>
         </div>
         <div className="flex items-center justify-center gap-2">
           <FaFolder className="text-xl" />
-          <span>Stories, Tips</span>
+          <span>{blogs.tag}</span>
         </div>
       </div>
     </div>
