@@ -9,6 +9,7 @@ import Thailand from "../assets/image/destination/Thailand.png";
 import Taiwan from "../assets/image/destination/Taiwan.png";
 import Indonesi from "../assets/image/destination/Indonesi.png";
 import Singapore from "../assets/image/destination/Singapore.png";
+import defaultImage from "../assets/image/destination/rocker-sta-RSYBi_1fhfM-unsplash.jpg";
 
 const renderStars = (rating) => {
   return (
@@ -24,15 +25,177 @@ const renderStars = (rating) => {
     </div>
   );
 };
+function PasangerForm() {
+  const [formData, setFormData] = useState({
+    From: "",
+    Destination: "",
+    Name: "",
+    Date: "",
+    People: "",
+  });
+  const [destinations, setDestinations] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  useEffect(() => {
+    fetch("https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations")
+      .then((res) => res.json())
+
+      .then((data) => setDestinations(data))
+      .catch((err) => console.error("Failed to fetch packages:", err));
+  }, []);
+  console.log(destinations);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(
+        `https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Messages`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      if (response.ok) {
+        setFormData({
+          From: "",
+          Destination: "",
+          Name: "",
+          Date: "",
+          People: "",
+        });
+        setSubmitStatus("successful");
+        setTimeout(() => setSubmitStatus(null), 2000);
+      } else {
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus(null), 2000);
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus(null), 2000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="w-full flex flex-col justify-center items-center h-100 sm:h-120 shadow-[0_0_10px_rgba(0,0,0,0.1)]"
+    >
+      <div className="w-[50%] flex flex-col items-center sm:h-100 sm:mt-10">
+        <select
+          className="h-10 w-[80%] border rounded pl-3 my-2"
+          name="From"
+          value={formData.From}
+          onChange={handleChange}
+          required
+        >
+          <option value="" disabled>
+            Select departure country
+          </option>
+          {destinations.map((dest) => (
+            <div className="w-[20%] h-5">
+              <option key={dest.id} value={dest.country}>
+                {dest.country}
+              </option>
+            </div>
+          ))}
+        </select>
+
+        <select
+          className="h-10 w-[80%] border rounded pl-3 my-2"
+          name="Destination"
+          value={formData.Destination}
+          onChange={handleChange}
+          required
+        >
+          <option value="" disabled>
+            Select destination
+          </option>
+          {destinations.map((dest) => (
+            <div>
+              <option key={dest.id} value={dest.country}>
+                {dest.country}
+              </option>
+            </div>
+          ))}
+        </select>
+        <input
+          className="h-10 w-[80%] border rounded pl-3 my-2"
+          name="Name"
+          value={formData.Name}
+          onChange={handleChange}
+          type="text"
+          placeholder="passanger name"
+          required
+        />
+        <input
+          className="h-10 w-[80%] border rounded pl-3 my-2"
+          name="People"
+          value={formData.People}
+          onChange={handleChange}
+          type="number"
+          placeholder="number of passanger"
+          required
+        ></input>
+        <input
+          className="h-10 w-[80%] border rounded pl-3 my-2"
+          name="Date"
+          value={formData.Date}
+          onChange={handleChange}
+          type="date"
+          placeholder="Enter date"
+        ></input>
+
+        {submitStatus === "successful" && (
+          <div className="w-[80%] mb-4 p-2 bg-green-100 text-green-800 rounded">
+            Message sent successfully!
+          </div>
+        )}
+        {submitStatus === "error" && (
+          <div className="w-[80%] mb-4 p-2 bg-red-100 text-red-800 rounded">
+            Error sending message please try again
+          </div>
+        )}
+
+        <div className="w-full flex justify-center">
+          <button
+            className="w-[50%] h-10 cursor-pointer rounded-full bg-black text-white mb-10 disabled:bg-gray-400"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "sending" : "Submit"}
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+}
 
 const PackageDetail = () => {
   const images = [Paris, Swiss, Thailand, Taiwan, Indonesi, Singapore];
   const { id } = useParams();
   const [pkg, setPkg] = useState(null);
+  const [book, setBook] = useState(false);
+
 
   useEffect(() => {
     fetch(
-      `https://67eadc5834bcedd95f64c9f3.mockapi.io/RebelRover/Destinations/${id}`
+      `https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations/${id}`
     )
       .then((res) => res.json())
       .then((data) => setPkg(data))
@@ -59,7 +222,7 @@ const PackageDetail = () => {
       {/* Hero */}
       <div className="relative min-h-screen">
         <img
-          src={images[pkg.id - 1]}
+          src={images[pkg.id - 1] || defaultImage}
           alt={pkg.title}
           className="w-full min-h-screen object-cover"
         />
@@ -96,6 +259,10 @@ const PackageDetail = () => {
           <Link
             to="#"
             className="bg-black text-white py-3 px-6 rounded-full hover:bg-gray-800 transition-all"
+            onClick={() => {
+              setBook(true);
+             
+            }}
           >
             Book Now
           </Link>
@@ -111,6 +278,7 @@ const PackageDetail = () => {
           </div>
         </div>
       </div>
+      {book && <PasangerForm />}
     </div>
   );
 };
