@@ -39,7 +39,9 @@ function Hero() {
               <ul className="absolute bottom-15 max-w-30  z-3 rounded bg-gray-200 overflow-y-auto max-h-30">
                 {destinations.map((item) => (
                   <Link>
-                  <li key={item.id} className="py-2" >{item.country}</li>
+                  <li key={item.id} 
+                  onClick={()=>setLocationClicked(false)}
+                  className="py-2" >{item.country}</li>
                   </Link>
                   
                 ))}
