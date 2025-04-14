@@ -20,6 +20,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [destination, setDestination] = useState([]);
+  const [searchClicked, setSearchClicked] = useState(false)
 
   useEffect(() => {
     fetch("https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations")
@@ -223,28 +224,36 @@ const Navbar = () => {
               placeholder="search for"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              onClick={()=>setSearchClicked(true)}
             />
-            <div className="flex mt-4 border flex-col max-h-[150px] overflow-y-auto mt-24 w-[80%] sm:w-[40%] bg-gray-300 rounded-md shadow-md">
-              {destination
-                .filter((item) =>
-                  search.toLowerCase() === ""
-                    ? item
-                    : item.country.toLowerCase().includes(search.toLowerCase())
-                )
-                .map((item) => (
-                  <Link
-                  to={`/packages/${item.id}`}
-                  onClick={()=>setIsSearchVisible(!isSearchVisible)}
-                    key={item.id}
-                    className="text-black p-2 cursor-pointer hover:bg-gray-100"
-                  >
-                    {item.country}
-                  </Link>
-                ))}
-            </div>
+            { searchClicked && (
+               <div className="flex mt-4 border flex-col max-h-[150px] overflow-y-auto mt-24 w-[80%] sm:w-[40%] bg-gray-300 rounded-md shadow-md">
+               {destination
+                 .filter((item) =>
+                   search.toLowerCase() === ""
+                     ? item
+                     : item.country.toLowerCase().includes(search.toLowerCase())
+                 )
+                 .map((item) => (
+                   <Link
+                   to={`/packages/${item.id}`}
+                   onClick={()=>setIsSearchVisible(!isSearchVisible)}
+                     key={item.id}
+                     className="text-black p-2 cursor-pointer hover:bg-gray-100"
+                   >
+                     {item.country}
+                   </Link>
+                 ))}
+             </div>
+            )
+
+            }
+           
 
             <button
-              onClick={() => setIsSearchVisible(false)}
+              onClick={() => {setIsSearchVisible(false);
+             setSearchClicked(false)
+              }}
               className="absolute right-4 md:right-8 text-white focus:outline-none"
             >
               <GiCrossMark className="text-2xl" />
