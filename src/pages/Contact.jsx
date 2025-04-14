@@ -70,10 +70,10 @@ const Contact = () => {
         />
         <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-white">
           <div>
-            <h1 className="text-center font-bold text-[clamp(1rem,5vw,3rem)]">Contact</h1>
+            <h1 className="text-center font-bold text-[clamp(1rem,5vw,3rem)]">
+              Contact
+            </h1>
             <span className="inline-flex items-center text-[clamp(0.5rem,2vw,2.5rem)] space-x-2 pl-3">
-              
-
               <Link to="/" className="text-center">
                 Home
               </Link>
@@ -85,10 +85,10 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div className="w-full my-10 px-10 flex flex-col justify-between sm:flex-row">
+      <div className="w-full  my-10 px-10 flex flex-col justify-between sm:flex-row">
         <form
           onSubmit={handleSubmit}
-          className="w-full flex flex-col h-100 sm:h-120 shadow-[0_0_10px_rgba(0,0,0,0.1)]"
+          className="w-full flex flex-col h-full mt-15  md:ml-10 sm:h-130 sm:mx-10 shadow-[0_0_10px_rgba(0,0,0,0.1)]"
         >
           <div className="w-full flex flex-col items-center sm:h-100 sm:mt-10">
             <input
@@ -150,31 +150,106 @@ const Contact = () => {
           </div>
         </form>
 
-        <div className="w-full flex flex-col h-80 mt-15 md:ml-10 sm:h-130 sm:mx-10">
+        <div className="w-full flex flex-col h-full mt-15  md:ml-10 sm:h-130 sm:mx-10">
           <h1 className="text-[clamp(1rem,5vw,3rem)]">Get In Touch</h1>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s,
           </p>
-          <span className="inline-flex items-center space-x-2 my-2">
-            <FaPhoneAlt />
-            <p className="m-0">+251 912 34 56 78</p>
-          </span>
-          <span className="inline-flex items-center space-x-2 my-2">
-            <FaEnvelope />
-            <p className="m-0">birdsfalkdl@afoid.c0m</p>
-          </span>
-          <span className="inline-flex items-center space-x-2 my-2">
-            <IoLocation />
-            <p className="m-0">
-              8465 Beahan Roads, Kaydencester, Louisiana - 59129, Indonesia
-            </p>
-          </span>
-          <span className="inline-flex items-center space-x-2 my-2">
-            <FaPhoneAlt />
-            <p className="m-0">Get In Touch</p>
-          </span>
+          <div className="flex flex-col">
+            <div className="flex flex-row">
+              <div>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <h3 className="text-[clamp(1.3rem,2vw,2rem)]">
+                    Lorem Ipsum  
+                  </h3>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <FaPhoneAlt />
+                  <p className="m-0">+251 912 34 56 78</p>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <FaEnvelope />
+                  <p className="m-0">birdsfalkdl@afoid.c0m</p>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <IoLocation />
+                  <p className="m-0">
+                    8465 Beahan Roads, 
+                  </p>
+                </span>
+              </div>
+              <div>
+                <span className="inline-flex items-center space-x-2 my-2">
+                 
+                  <h3 className="text-[clamp(1.3rem,2vw,2rem)]">
+                    Lorem Ipsum 
+                  </h3>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                <FaPhoneAlt />
+                  <p className="m-0">+251 912 34 56 78</p>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <FaEnvelope />
+                  <p className="m-0">birdsfalkdl@afoid.c0m</p>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <IoLocation />
+                  <p className="m-0">
+                    8465 Beahan Roads, 
+                  </p>
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-row">
+              <div>
+                <span className="inline-flex items-center space-x-2 my-2">
+                 
+                  <h3 className="text-[clamp(1.3rem,2vw,2rem)]">
+                    Lorem Ipsum 
+                  </h3>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <FaPhoneAlt />
+                  <p className="m-0">+251 912 34 56 78</p>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <FaEnvelope />
+                  <p className="m-0">birdsfalkdl@afoid.c0m</p>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <IoLocation />
+                  <p className="m-0">
+                    8465 Beahan Roads, 
+                  </p>
+                </span>
+              </div>
+              <div>
+                <span className="inline-flex items-center space-x-2 my-2">
+                 
+                  <h3 className="text-[clamp(1.3rem,2vw,2rem)]">
+                    Lorem Ipsum 
+                  </h3>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <FaPhoneAlt />
+                  <p className="m-0">+251 912 34 56 78</p>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <FaEnvelope />
+                  <p className="m-0">birdsfalkdl@afoid.c0m</p>
+                </span>
+                <span className="inline-flex items-center space-x-2 my-2">
+                  <IoLocation />
+                  <p className="m-0">
+                    8465 Beahan Roads, 
+                  </p>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -182,5 +257,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-
