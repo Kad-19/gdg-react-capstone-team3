@@ -9,7 +9,7 @@ import Thailand from "../assets/image/destination/Thailand.png";
 import Taiwan from "../assets/image/destination/Taiwan.png";
 import Indonesi from "../assets/image/destination/Indonesi.png";
 import Singapore from "../assets/image/destination/Singapore.png";
-import defaultImage from "../assets/image/destination/rocker-sta-RSYBi_1fhfM-unsplash.jpg";
+import defaultImage from "../assets/image/destination/default.jpg";
 
 const renderStars = (rating) => {
   return (
@@ -163,7 +163,7 @@ function PasangerForm() {
 
         {submitStatus === "successful" && (
           <div className="w-[80%] mb-4 p-2 bg-green-100 text-green-800 rounded">
-            Message sent successfully!
+            Book sent successfully!
           </div>
         )}
         {submitStatus === "error" && (

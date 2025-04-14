@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import welcome from "../../assets/image/home/welcome.png";
 import { FaAngleDown } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Hero() {
+  const [destinations, setDestinations] = useState([]);
+  const [locationClicked, setLocationClicked] = useState(false);
+
+  useEffect(() => {
+    fetch("https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations")
+      .then((res) => res.json())
+      .then((data) => setDestinations(data))
+      .catch((err) => console.error("Failed to fetch packages:", err));
+  }, []);
+
   return (
     <div
       style={{ backgroundImage: `url(${welcome})` }}
@@ -18,9 +29,23 @@ function Hero() {
 
         <div className="flex justify-start mt-8 sm:mt-10 w-fit">
           <div className="bg-white shadow-md rounded-2xl flex flex-col sm:flex-row sm:items-center px-4 py-4 sm:px-6 sm:py-3 gap-3 w-full max-w-3xl  sm:rounded-full">
-            <div className="text-gray-700 font-medium bg-transparent hover:bg-gray-100 px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer justify-between">
+            <div
+              onClick={() => setLocationClicked(true)}
+              className="text-gray-700 font-medium bg-transparent hover:bg-gray-100 px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer justify-between"
+            >
               Location <FaAngleDown />
             </div>
+            {locationClicked && (
+              <ul className="absolute bottom-15 max-w-30  z-3 rounded bg-gray-200 overflow-y-auto max-h-30">
+                {destinations.map((item) => (
+                  <Link>
+                  <li key={item.id} className="py-2" >{item.country}</li>
+                  </Link>
+                  
+                ))}
+              </ul>
+            )}
+
             <div className="sm:hidden h-px w-full bg-gray-300" />
             <div className="text-gray-700 font-medium bg-transparent hover:bg-gray-100 px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer justify-between">
               Date <FaAngleDown />
