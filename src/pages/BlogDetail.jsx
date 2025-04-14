@@ -261,96 +261,161 @@ const Mainblog = () => {
 };
 
 const Contacts = () => {
+
+
+   const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
+  
+    function handleChange(e) {
+      const { name, value } = e.target;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+  
+      try {
+        const response = await fetch(
+          `https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Messages`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
+        if (response.ok) {
+          setFormData({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          });
+          setSubmitStatus("successful");
+          setTimeout(() => setSubmitStatus(null), 2000);
+        } else {
+          setSubmitStatus("error");
+          setTimeout(() => setSubmitStatus(null), 2000);
+        }
+      } catch (error) {
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus(null), 2000);
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
+  
   return (
-    <div className="bg-white text-black p-8 max-w-2xl mx-auto">
-      <h2 className="text-2xl font-semibold text-black"> Leave a Reply</h2>
-      <p className="text-gray-400 text-sm mb-6">
-        Your email address will not be published. Required fields are marked *
-      </p>
-
-      <form
-        className="space-y-6"
-        action=""
-        onSubmit={(e) => {
-          e.preventDefault(); // prevent page reload
-          alert("✅ Comment submitted! Thank you.");
-          e.target.reset();
-        }}
-      >
-        {/* Comment Field */}
-        <div>
-          <label htmlFor="comment" className="block text-sm font-semibold mb-2">
-            Comment
-          </label>
-          <textarea
-            id="comment"
-            rows="5"
-            className="w-full p-4 rounded-md bg-transparent border border-gray-400 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-            placeholder="Write your comment..."
-          />
-        </div>
-
-        {/* Name */}
-        <div>
-          <label htmlFor="name" className="block text-sm font-semibold mb-2">
-            Name *
-          </label>
-          <input
-            type="text"
-            id="name"
-            className="w-full p-3 rounded-md bg-transparent border border-gray-400 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-            placeholder="Your name"
-          />
-        </div>
-
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="block text-sm font-semibold mb-2">
-            Email *
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="w-full p-3 rounded-md bg-transparent border border-gray-400 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-            placeholder="you@example.com"
-          />
-        </div>
-
-        {/* Website */}
-        <div>
-          <label htmlFor="website" className="block text-sm font-semibold mb-2">
-            Website
-          </label>
-          <input
-            type="text"
-            id="website"
-            className="w-full p-3 rounded-md bg-transparent border border-gray-400 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-            placeholder="https://yourwebsite.com"
-          />
-        </div>
-
-        {/* Checkbox */}
-        <div className="flex items-start gap-2">
-          <input
-            type="checkbox"
-            id="save-info"
-            className="accent-white w-4 h-4 mt-1"
-          />
-          <label htmlFor="save-info" className="text-sm text-gray-400">
-            Save my name, email, and website in this browser for the next time I
-            comment.
-          </label>
-        </div>
-
-        {/* Submit Button */}
+    <div className="bg-white p-8 rounded shadow-md">
+    <h2 className="text-2xl font-bold mb-4">Leave a Reply</h2>
+    <p className="text-sm text-gray-600 mb-4">
+      Your email address will not be published. Required fields are marked *
+    </p>
+    <form onSubmit={handleSubmit} className="w-[65%]  flex flex-col">
+      <div className="mb-4">
+        <label htmlFor="comment" className="block text-gray-700 text-sm font-bold mb-2">
+          Comment
+        </label>
+        <textarea
+          id="comment"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
+          name="comment"
+          value={formData.comment}
+          onChange={handleChange}
+          placeholder="Your comment..."
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+          Name *
+        </label>
+        <input
+          type="text"
+          id="name"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Your name *"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
+          Email *
+        </label>
+        <input
+          type="email"
+          id="email"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Your email *"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="website" className="block text-gray-700 text-sm font-bold mb-2">
+          Website
+        </label>
+        <input
+          type="url"
+          id="website"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          name="website"
+          value={formData.website}
+          onChange={handleChange}
+          placeholder="Website"
+        />
+      </div>
+      <div className="mb-4 flex items-center">
+        <input
+          type="checkbox"
+          id="saveInfo"
+          className="mr-2 leading-tight"
+          name="saveInfo"
+          checked={formData.saveInfo}
+          onChange={handleChange}
+        />
+        <label htmlFor="saveInfo" className="text-gray-700 text-sm">
+          Save my name, email, and website in this browser for the next time I comment.
+        </label>
+      </div>
+      <div className="flex justify-start">
         <button
+          className="bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-gray-400"
           type="submit"
-          className="bg-black text-white px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition"
+          disabled={isSubmitting}
         >
-          Post Comment
+          {isSubmitting ? "Post Comment" : "Post Comment"}
         </button>
-      </form>
-    </div>
+      </div>
+
+      {submitStatus === "successful" && (
+        <div className="mt-4 p-2 bg-green-100 text-green-800 rounded">
+          Comment submitted successfully!
+        </div>
+      )}
+      {submitStatus === "error" && (
+        <div className="mt-4 p-2 bg-red-100 text-red-800 rounded">
+          Error submitting comment. Please try again.
+        </div>
+      )}
+    </form>
+  </div>
   );
 };
 
