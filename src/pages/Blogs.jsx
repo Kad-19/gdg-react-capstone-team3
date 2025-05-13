@@ -16,7 +16,7 @@ const Blogs = () => {
   };
 
   useEffect(() => {
-    fetch("https://67fc07891f8b41c816858fe2.mockapi.io/blogs")
+    fetch("https://6821e97cb342dce8004c506b.mockapi.io/blogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data))
       .catch((err) => console.error("Failed to fetch packages:", err));
@@ -55,7 +55,7 @@ const Blogs = () => {
                   key={blog.id}
                   className="flex-grow bg-white rounded-lg shadow-lg pt-4 pr-4 pb-8 pl-6"
                 >
-                  <p className="font-normal text-lg">{blog.tag}</p>
+                  <p className="font-normal text-lg">{blog.tag} | </p>
                   <h4 className="text-2xl font-medium leading-tight">
                     {blog.title}
                     <br />-

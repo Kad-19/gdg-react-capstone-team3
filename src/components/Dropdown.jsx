@@ -56,7 +56,7 @@ export const BlogsDropdown = () => {
     const fetchBlogs = async () => {
       try {
         const response = await fetch(
-          "https://67fc07891f8b41c816858fe2.mockapi.io/blogs"
+          "https://6821e97cb342dce8004c506b.mockapi.io/blogs"
         );
         const data = await response.json();
         setBlogs(data);
@@ -113,7 +113,7 @@ export const DestinationsDropdown = () => {
     const fetchDestinations = async () => {
       try {
         const response = await fetch(
-          `https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations`
+          `https://681ef58cc1c291fa663591ff.mockapi.io/api/v1/Destinations`
         );
         const data = await response.json();
         setDestinations(data);

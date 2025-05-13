@@ -38,7 +38,7 @@ function PasangerForm() {
   const [submitStatus, setSubmitStatus] = useState(null);
 
   useEffect(() => {
-    fetch("https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations")
+    fetch("https://681ef58cc1c291fa663591ff.mockapi.io/api/v1/Destinations")
       .then((res) => res.json())
 
       .then((data) => setDestinations(data))
@@ -195,7 +195,7 @@ const PackageDetail = () => {
 
   useEffect(() => {
     fetch(
-      `https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations/${id}`
+      `https://681ef58cc1c291fa663591ff.mockapi.io/api/v1/Destinations/${id}`
     )
       .then((res) => res.json())
       .then((data) => {

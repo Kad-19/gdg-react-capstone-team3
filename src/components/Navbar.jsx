@@ -23,7 +23,7 @@ const Navbar = () => {
   const [searchClicked, setSearchClicked] = useState(false)
 
   useEffect(() => {
-    fetch("https://67f175ccc733555e24ad4000.mockapi.io/api/v1/Destinations")
+    fetch("https://681ef58cc1c291fa663591ff.mockapi.io/api/v1/Destinations")
       .then((res) => res.json())
       .then((data) => setDestination(data))
       .catch((err) => console.error("Failed to fetch packages:", err));

@@ -37,7 +37,7 @@ const Banner = () => {
   console.log(id);
 
   useEffect(() => {
-    fetch(`https://67fc07891f8b41c816858fe2.mockapi.io/blogs/${id}`)
+    fetch(`https://6821e97cb342dce8004c506b.mockapi.io/blogs/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setBlogs(data);
@@ -60,7 +60,7 @@ const Banner = () => {
   if (!blogs) {
     return (
       <div className="min-h-screen flex items-center justify-center text-center">
-        <p className="text-xl text-gray-700">Package not found.</p>
+        <p className="text-xl text-gray-700">loading.....</p>
       </div>
     );
   }
@@ -107,7 +107,7 @@ const Mainblog = () => {
   console.log(id);
 
   useEffect(() => {
-    fetch(`https://67fc07891f8b41c816858fe2.mockapi.io/blogs/${id}`)
+    fetch(`https://6821e97cb342dce8004c506b.mockapi.io/blogs/${id}`)
       .then((res) => res.json())
       .then((data) => setBlogs(data))
       .catch((err) => console.error("Failed to fetch package detail:", err));
