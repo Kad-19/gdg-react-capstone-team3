@@ -1,5 +1,5 @@
 import React from "react";
-import banner from "../../assets/image/about/banner.png";
+import banner from "../../assets/image/about/Banner.png";
 import { Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
 
